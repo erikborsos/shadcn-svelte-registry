@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import { getContext } from "svelte"
+
+	const setToc =
+		getContext<(items: { title: string; url: string; depth: number }[]) => void>("setToc")
+	setToc([])
+</script>

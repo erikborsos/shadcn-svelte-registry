@@ -1,0 +1,39 @@
+[
+	{
+		"name": "badge",
+		"title": "Badge",
+		"type": "registry:component",
+		"description": "Displays a badge or a component that looks like a badge.",
+		"registryDependencies": [],
+		"relativeUrl": "badge.json"
+	},
+	{
+		"name": "code-block",
+		"title": "Code Block",
+		"type": "registry:component",
+		"description": "Displays syntax highlighted code with optional file tabs, line numbers, and a copy button.",
+		"dependencies": [
+			"shiki"
+		],
+		"registryDependencies": [
+			"button",
+			"card",
+			"tabs"
+		],
+		"relativeUrl": "code-block.json"
+	},
+	{
+		"name": "app-shell",
+		"title": "App Shell",
+		"type": "registry:block",
+		"description": "Documentation shell with header, sidebar, and table of contents.",
+		"dependencies": [
+			"mode-watcher"
+		],
+		"registryDependencies": [
+			"button",
+			"sidebar"
+		],
+		"relativeUrl": "app-shell.json"
+	}
+]

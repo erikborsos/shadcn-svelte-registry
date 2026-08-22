@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "badge",
+	"title": "Badge",
+	"type": "registry:component",
+	"description": "Displays a badge or a component that looks like a badge.",
+	"devDependencies": [
+		"tailwind-variants@^3.3.0"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\" module>\n\timport { tv, type VariantProps } from \"tailwind-variants\"\n\n\texport const badgeVariants = tv({\n\t\tbase: \"inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-md border px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-3\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"border-transparent bg-primary text-primary-foreground\",\n\t\t\t\tsecondary: \"border-transparent bg-secondary text-secondary-foreground\",\n\t\t\t\tdestructive: \"border-transparent bg-destructive/10 text-destructive dark:bg-destructive/20\",\n\t\t\t\toutline: \"text-foreground\"\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\"\n\t\t}\n\t})\n\n\texport type BadgeVariant = VariantProps<typeof badgeVariants>[\"variant\"]\n\n\texport type BadgeProps = {\n\t\tvariant?: BadgeVariant\n\t\tclass?: string\n\t\tref?: HTMLSpanElement | null\n\t\tchildren?: import(\"svelte\").Snippet\n\t}\n</script>\n\n<script lang=\"ts\">\n\timport { cn } from \"$UTILS$\"\n\n\tlet {\n\t\tvariant = \"default\",\n\t\tclass: className,\n\t\tref = $bindable(null),\n\t\tchildren\n\t}: BadgeProps = $props()\n</script>\n\n<span bind:this={ref} data-slot=\"badge\" class={cn(badgeVariants({ variant }), className)}>\n\t{@render children?.()}\n</span>\n",
+			"type": "registry:component",
+			"target": "badge.svelte"
+		},
+		{
+			"content": "export { default as Badge, badgeVariants } from \"./badge.svelte\"\n",
+			"type": "registry:component",
+			"target": "index.ts"
+		}
+	]
+}

@@ -1,0 +1,88 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry.json",
+	"name": "acme",
+	"homepage": "https://acme.com",
+	"items": [
+		{
+			"name": "badge",
+			"type": "registry:component",
+			"title": "Badge",
+			"description": "Displays a badge or a component that looks like a badge.",
+			"registryDependencies": [],
+			"files": [
+				{
+					"path": "src/lib/registry/components/badge/badge.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/components/badge/index.ts",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "code-block",
+			"type": "registry:component",
+			"title": "Code Block",
+			"description": "Displays syntax highlighted code with optional file tabs, line numbers, and a copy button.",
+			"dependencies": ["shiki"],
+			"registryDependencies": ["button", "card", "tabs"],
+			"files": [
+				{
+					"path": "src/lib/registry/components/code-block/index.ts",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/components/code-block/code-block.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/components/code-block/highlight.ts",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "app-shell",
+			"type": "registry:block",
+			"title": "App Shell",
+			"description": "Documentation shell with header, sidebar, and table of contents.",
+			"registryDependencies": ["button", "sidebar"],
+			"dependencies": ["mode-watcher"],
+			"files": [
+				{
+					"path": "src/lib/registry/blocks/app-shell/index.ts",
+					"type": "registry:block"
+				},
+				{
+					"path": "src/lib/registry/blocks/app-shell/app-shell.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/app-shell/app-header.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/app-shell/docs-sidebar.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/app-shell/table-of-contents.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/app-shell/theme-switcher.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/app-shell/github.svelte",
+					"type": "registry:component"
+				},
+				{
+					"path": "src/lib/registry/blocks/app-shell/shadnc.svelte",
+					"type": "registry:component"
+				}
+			]
+		}
+	]
+}
