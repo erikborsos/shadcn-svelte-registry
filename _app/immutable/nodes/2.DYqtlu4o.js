@@ -1,0 +1,1 @@
+import{at as e,ct as t,st as n}from"../chunks/CojDo5V5.js";import"../chunks/xihTtKlq.js";function r(r,i){t(i,!0),e(`setToc`)([]),n()}export{r as component};
