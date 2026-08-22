@@ -21,7 +21,8 @@
 		<AppHeader
 			shortcuts={[
 				{ label: "Docs", href: `${base}/docs` },
-				{ label: "Components", href: `${base}/docs/components` }
+				{ label: "Components", href: `${base}/docs/components` },
+				{ label: "Blocks", href: `${base}/docs/blocks` }
 			]}
 			search={{
 				placeholder: "Search documentation...",
