@@ -1,0 +1,1 @@
+import"../chunks/CojDo5V5.js";import"../chunks/xihTtKlq.js";import{n as e}from"../chunks/3TA6gXEG.js";import{t}from"../chunks/B64g9nf6.js";function n(n){t(n,{kind:`components`,title:`Components`,description:`Ready to use building blocks for your app. Add them to registry.json and they appear here automatically.`,get items(){return e}})}export{n as component};

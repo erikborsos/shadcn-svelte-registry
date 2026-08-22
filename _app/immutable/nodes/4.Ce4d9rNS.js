@@ -1,1 +1,0 @@
-import"../chunks/CojDo5V5.js";import"../chunks/xihTtKlq.js";import{t as e}from"../chunks/DFYGksF-.js";import{t}from"../chunks/Mqo_VFZ-.js";function n(n){t(n,{kind:`blocks`,title:`Blocks`,description:`Composable sections and page shells. Add them to registry.json and they appear here automatically.`,get items(){return e}})}export{n as component};
