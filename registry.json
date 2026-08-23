@@ -1,7 +1,7 @@
 {
 	"$schema": "https://shadcn-svelte.com/schema/registry.json",
-	"name": "acme",
-	"homepage": "https://acme.com",
+	"name": "shadcn",
+	"homepage": "https://shadcn.erik-b.dev",
 	"items": [
 		{
 			"name": "badge",
@@ -79,7 +79,7 @@
 					"type": "registry:component"
 				},
 				{
-					"path": "src/lib/registry/blocks/app-shell/shadnc.svelte",
+					"path": "src/lib/registry/blocks/app-shell/shadcn.svelte",
 					"type": "registry:component"
 				}
 			]

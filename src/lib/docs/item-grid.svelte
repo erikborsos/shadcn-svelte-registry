@@ -26,13 +26,15 @@
 				class="group flex flex-col gap-3 rounded-xl border bg-card p-4 no-underline transition-colors hover:bg-muted/50"
 			>
 				<div
-					class="pointer-events-none flex h-36 items-center justify-center overflow-hidden rounded-lg border bg-muted/40 p-4"
+					class="pointer-events-none flex min-h-36 flex-1 overflow-hidden rounded-lg border bg-background bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] bg-size-[12px_12px] p-4"
 				>
-					{#if item.demo}
-						<item.demo />
-					{:else}
-						<span class="text-xs text-muted-foreground">No preview</span>
-					{/if}
+					<div class="flex w-full items-center justify-center">
+						{#if item.demo}
+							<item.demo />
+						{:else}
+							<span class="text-xs text-muted-foreground">No preview</span>
+						{/if}
+					</div>
 				</div>
 				<div class="flex flex-col gap-1">
 					<span class="font-medium group-hover:underline">{item.title}</span>

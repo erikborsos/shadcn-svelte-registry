@@ -7,7 +7,7 @@
 	import { CodeBlock } from "../index.ts"
 </script>
 
-<div class="flex w-full max-w-xl flex-col gap-4">
+<div class="flex w-full flex-col gap-4">
 	<CodeBlock
 		files={[
 			{

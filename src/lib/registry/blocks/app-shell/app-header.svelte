@@ -11,7 +11,7 @@
 	import * as Sidebar from "$lib/components/ui/sidebar"
 	import ThemeSwitcher from "./theme-switcher.svelte"
 	import Github from "./github.svelte"
-	import Shadnc from "./shadnc.svelte"
+	import Shadcn from "./shadcn.svelte"
 	import { cn } from "$lib/utils"
 	import { base } from "$app/paths"
 
@@ -23,7 +23,7 @@
 		<div class="flex h-13 items-center **:data-[slot=separator]:h-4!">
 			<Sidebar.Trigger class="lg:hidden" />
 			<Button class="hidden lg:flex" variant="ghost" size="icon" href={base || "/"}>
-				<Shadnc />
+				<Shadcn />
 			</Button>
 			<nav class="hidden items-center gap-0 lg:flex">
 				{#each shortcuts as shortcut (shortcut.label)}

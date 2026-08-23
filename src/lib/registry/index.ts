@@ -89,6 +89,9 @@ const titleCase = (name: string) =>
 		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
 		.join(" ")
 
+const stripModuleScript = (source: string) =>
+	source.replace(/^[ \t]*<script[^>]*\bmodule\b[^>]*>[\s\S]*?<\/script>[ \t]*\n/, "").trim()
+
 const examplesByItem = new Map<string, ExampleEntry[]>()
 for (const [path, module] of Object.entries(exampleModules)) {
 	const baseName = (path.split("/").at(-1) ?? "").replace(/\.svelte$/, "")
@@ -101,7 +104,7 @@ for (const [path, module] of Object.entries(exampleModules)) {
 		title: module.title ?? titleCase(baseName),
 		description: module.description ?? "",
 		component: module.default,
-		source: exampleSources.get(path.replace(/\.svelte(\?.*)?$/, ".svelte")) ?? ""
+		source: stripModuleScript(exampleSources.get(path.replace(/\.svelte(\?.*)?$/, ".svelte")) ?? "")
 	})
 	examplesByItem.set(name, list)
 }
@@ -142,11 +145,6 @@ export function itemHref(kind: RegistryKind, name: string): string {
 	return `${base}/docs/${kind}/${name}`
 }
 
-export function installCommand(item: RegistryEntry): string {
-	const target = registry.homepage ? `${registry.homepage}/r/${item.name}.json` : item.name
-	return `npx shadcn-svelte@latest add ${target}`
-}
-
 const packageManagerRunners: Record<string, string> = {
 	npm: "npx shadcn-svelte@latest add",
 	yarn: "yarn dlx shadcn-svelte@latest add",
@@ -154,8 +152,12 @@ const packageManagerRunners: Record<string, string> = {
 	bun: "bunx --bun shadcn-svelte@latest add"
 }
 
+export function installCommand(item: RegistryEntry): string {
+	return `${packageManagerRunners.npm} ${registry.homepage}/r/${item.name}.json`
+}
+
 export function installCommands(item: RegistryEntry) {
-	const target = registry.homepage ? `${registry.homepage}/r/${item.name}.json` : item.name
+	const target = `${registry.homepage}/r/${item.name}.json`
 	return Object.entries(packageManagerRunners).map(([name, runner]) => ({
 		name,
 		lang: "bash",

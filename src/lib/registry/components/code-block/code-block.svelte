@@ -61,6 +61,23 @@
 	let activeName = $state<string>(list[0]?.name ?? "")
 	const active = $derived<CodeBlockFile>(list.find((f) => f.name === activeName) ?? list[0])
 
+	let tabScroller = $state<HTMLDivElement | null>(null)
+
+	$effect(() => {
+		void activeName
+		const scroller = tabScroller
+		if (!scroller) return
+		const selected = scroller.querySelector('[data-state="active"]')
+		if (!(selected instanceof HTMLElement)) return
+		const s = scroller.getBoundingClientRect()
+		const t = selected.getBoundingClientRect()
+		if (t.left < s.left) {
+			scroller.scrollBy({ left: t.left - s.left - 8, behavior: "smooth" })
+		} else if (t.right > s.right) {
+			scroller.scrollBy({ left: t.right - s.right + 8, behavior: "smooth" })
+		}
+	})
+
 	const htmlByFile = $derived(() => {
 		const map = new Map<string, Promise<string>>()
 		for (const file of list) {
@@ -130,7 +147,7 @@
 					{/if}
 					<span class="truncate font-medium">{list[0].name}</span>
 				</div>
-				<div class="flex items-center gap-2">
+				<div class="flex shrink-0 items-center gap-2">
 					<span class="hidden text-xs text-muted-foreground sm:inline">
 						{list[0].lang}
 					</span>
@@ -153,10 +170,13 @@
 			<CardHeader
 				class="flex h-10 items-center justify-between gap-2 bg-muted/40 [--card-spacing:--spacing(2)]"
 			>
-				<div class="max-w-full overflow-x-auto">
-					<Tabs.List variant="line" class="h-10 gap-0.5 bg-transparent p-0">
+				<div bind:this={tabScroller} class="min-w-0 flex-1 overflow-x-auto overflow-y-hidden">
+					<Tabs.List variant="line" class="h-10 bg-transparent p-0">
 						{#each list as file (file.name)}
-							<Tabs.Trigger value={file.name} class="h-10 gap-1 px-2 sm:gap-1.5 sm:px-3">
+							<Tabs.Trigger
+								value={file.name}
+								class="h-10 gap-1 px-1 sm:px-1.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-0"
+							>
 								{#if Icon}
 									<Icon class="size-4" data-icon="inline-start" />
 								{/if}

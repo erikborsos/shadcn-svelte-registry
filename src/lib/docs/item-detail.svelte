@@ -12,7 +12,6 @@
 
 	const commands = $derived(installCommands(item))
 
-	// item is intentionally captured at mount; pages are keyed by slug
 	// svelte-ignore state_referenced_locally
 	setToc([
 		{ title: "Preview", url: "#preview", depth: 2 },
@@ -43,7 +42,9 @@
 {/if}
 
 <h2 id="preview" class="scroll-m-24 text-2xl font-semibold tracking-tight">Preview</h2>
-<div class="flex min-h-48 items-center justify-center rounded-xl border bg-card p-8">
+<div
+	class="flex min-h-48 items-center justify-center rounded-xl border bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] bg-size-[12px_12px] p-8"
+>
 	{#if item.demo}
 		<item.demo />
 	{:else}
@@ -63,19 +64,29 @@
 	<h2 id="examples" class="scroll-m-24 text-2xl font-semibold tracking-tight">Examples</h2>
 	<div class="flex flex-col gap-10">
 		{#each item.examples as example (example.name)}
-			<section id={"example-" + example.name} class="flex scroll-m-24 flex-col gap-4">
+			<section id={"example-" + example.name} class="flex scroll-m-24 flex-col gap-8">
 				<div class="flex flex-col gap-1">
 					<h3 class="text-lg font-semibold tracking-tight">{example.title}</h3>
 					{#if example.description}
 						<p class="text-sm text-muted-foreground">{example.description}</p>
 					{/if}
 				</div>
-				<div class="flex min-h-24 items-center justify-center rounded-xl border bg-card p-8">
-					<example.component />
+				<div>
+					<div
+						class="flex min-h-24 items-center justify-center rounded-xl rounded-b-none border bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] bg-size-[12px_12px] p-8"
+					>
+						<example.component />
+					</div>
+					{#if example.source}
+						<CodeBlock
+							class="mx-px rounded-t-none"
+							header={false}
+							name={`${example.name}.svelte`}
+							lang="svelte"
+							code={example.source}
+						/>
+					{/if}
 				</div>
-				{#if example.source}
-					<CodeBlock name={`${example.name}.svelte`} lang="svelte" code={example.source} />
-				{/if}
 			</section>
 		{/each}
 	</div>
