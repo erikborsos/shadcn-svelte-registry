@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from "svelte"
-	import { base } from "$app/paths"
+	import { resolve } from "$app/paths"
 	import type { RegistryEntry, RegistryKind } from "$lib/registry"
 	import { installCommands } from "$lib/registry"
 	import { CodeBlock } from "$lib/registry/components/code-block"
@@ -30,7 +30,7 @@
 </script>
 
 <a
-	href="{base}/docs/{kind}"
+	href={resolve(`/docs/${kind}`)}
 	class="text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
 >
 	&larr; Back to {kind}

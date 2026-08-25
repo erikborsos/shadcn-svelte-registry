@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte"
+	import type { TocItem } from "./types.ts"
 
-	let { toc = [] }: { toc: { title: string; url: string; depth: number }[] } = $props()
+	let { toc = [], title = "On This Page" }: { toc: TocItem[]; title?: string } = $props()
 
 	let activeId = $state<string | null>(null)
 
@@ -36,9 +37,9 @@
 {#if toc.length}
 	<div class="no-scrollbar flex flex-1 flex-col gap-2 overflow-y-auto p-4 pt-0 text-sm">
 		<p class="sticky top-0 h-6 bg-background text-xs font-medium text-muted-foreground">
-			On This Page
+			{title}
 		</p>
-		{#each toc as item}
+		{#each toc as item (item.url)}
 			<a
 				href={item.url}
 				class="text-[0.8rem] text-muted-foreground no-underline transition-colors hover:text-foreground data-[active=true]:font-medium data-[active=true]:text-foreground"

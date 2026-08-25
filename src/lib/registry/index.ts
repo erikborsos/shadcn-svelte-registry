@@ -1,5 +1,5 @@
 import type { Component } from "svelte"
-import { base } from "$app/paths"
+import { resolve } from "$app/paths"
 
 export type RegistryFile = {
 	path: string
@@ -142,7 +142,7 @@ export function getItem(kind: RegistryKind, name: string): RegistryEntry | undef
 }
 
 export function itemHref(kind: RegistryKind, name: string): string {
-	return `${base}/docs/${kind}/${name}`
+	return resolve(`/docs/${kind}/${name}`)
 }
 
 const packageManagerRunners: Record<string, string> = {
@@ -172,7 +172,7 @@ export type SidebarGroup = {
 }
 
 export const sidebarItems: SidebarGroup[] = [
-	{ label: "Introduction", href: `${base}/docs` },
+	{ label: "Introduction", href: resolve("/docs") },
 	...(components.length
 		? [
 				{

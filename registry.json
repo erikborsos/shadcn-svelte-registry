@@ -55,6 +55,10 @@
 					"type": "registry:block"
 				},
 				{
+					"path": "src/lib/registry/blocks/app-shell/types.ts",
+					"type": "registry:block"
+				},
+				{
 					"path": "src/lib/registry/blocks/app-shell/app-shell.svelte",
 					"type": "registry:component"
 				},

@@ -1,8 +1,13 @@
 <script lang="ts" module>
+	import type { Snippet } from "svelte"
+	import type { NavLink, SearchConfig } from "./types.ts"
+
 	export type Props = {
-		shortcuts: { label: string; href: string }[]
-		search?: { placeholder: string; shortPlaceholder?: string; onSearch: () => void }
+		nav?: NavLink[]
+		search?: SearchConfig
 		github?: string
+		logo?: Snippet
+		home?: string
 	}
 </script>
 
@@ -13,21 +18,24 @@
 	import Github from "./github.svelte"
 	import Shadcn from "./shadcn.svelte"
 	import { cn } from "$lib/utils"
-	import { base } from "$app/paths"
 
-	let { shortcuts, search, github }: Props = $props()
+	let { nav = [], search, github, logo, home = "/" }: Props = $props()
 </script>
 
 <header class="sticky top-0 z-50 w-full bg-background/80 py-2 backdrop-blur-md">
 	<div class="px-6">
 		<div class="flex h-13 items-center **:data-[slot=separator]:h-4!">
 			<Sidebar.Trigger class="lg:hidden" />
-			<Button class="hidden lg:flex" variant="ghost" size="icon" href={base || "/"}>
-				<Shadcn />
+			<Button class="hidden lg:flex" variant="ghost" size="icon" href={home}>
+				{#if logo}
+					{@render logo()}
+				{:else}
+					<Shadcn />
+				{/if}
 			</Button>
 			<nav class="hidden items-center gap-0 lg:flex">
-				{#each shortcuts as shortcut (shortcut.label)}
-					<Button size="sm" variant="ghost" href={shortcut.href}>{shortcut.label}</Button>
+				{#each nav as link (link.label)}
+					<Button size="sm" variant="ghost" href={link.href}>{link.label}</Button>
 				{/each}
 			</nav>
 			<div class="ml-auto flex items-center gap-2">

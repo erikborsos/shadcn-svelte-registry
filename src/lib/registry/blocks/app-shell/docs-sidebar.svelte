@@ -1,11 +1,9 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/components/ui/sidebar"
 	import { page } from "$app/state"
+	import type { SidebarGroup } from "./types.ts"
 
-	let {
-		items = []
-	}: { items: { label: string; href?: string; items?: { label: string; href: string }[] }[] } =
-		$props()
+	let { items = [] }: { items: SidebarGroup[] } = $props()
 </script>
 
 <Sidebar.Root
@@ -13,7 +11,7 @@
 	collapsible="none"
 >
 	<Sidebar.Content class="no-scrollbar gap-0 overflow-auto px-2 py-4">
-		{#each items as group}
+		{#each items as group (group.label)}
 			<Sidebar.Group>
 				{#if group.href}
 					<Sidebar.MenuButton isActive={page.url.pathname === group.href}>
@@ -28,7 +26,7 @@
 					<Sidebar.GroupContent>
 						<Sidebar.Menu>
 							<Sidebar.MenuSub>
-								{#each group.items as item}
+								{#each group.items as item (item.href)}
 									<Sidebar.MenuSubItem>
 										<Sidebar.MenuSubButton isActive={page.url.pathname === item.href}>
 											{#snippet child({ props })}
