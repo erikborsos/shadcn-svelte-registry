@@ -30,14 +30,12 @@
 		<div class="flex flex-1 px-2">
 			<DocsSidebar items={sidebar} />
 			<main class="flex min-w-0 flex-1">
-				<div
-					class="mx-auto flex w-full max-w-3xl min-w-0 flex-1 flex-col gap-6 px-4 py-6 md:px-0 lg:py-8"
-				>
+				<div class="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-6 md:px-0 lg:py-8">
 					{@render children()}
 				</div>
 				{#if toc && tocItems.length}
 					<div
-						class="fixed top-24 right-0 z-30 hidden h-[calc(100svh-6rem)] w-72 flex-col gap-4 overscroll-none pr-4 pb-8 xl:flex"
+						class="fixed top-24 right-0 z-30 hidden h-[calc(100svh-6rem)] w-72 overscroll-none pr-4 pb-8 xl:flex"
 					>
 						<TableOfContents toc={tocItems} />
 					</div>

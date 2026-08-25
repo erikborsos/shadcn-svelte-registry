@@ -65,7 +65,7 @@
 	<div class="flex flex-col gap-10">
 		{#each item.examples as example (example.name)}
 			<section id={"example-" + example.name} class="flex scroll-m-24 flex-col gap-8">
-				<div class="flex flex-col gap-1">
+				<div>
 					<h3 class="text-lg font-semibold tracking-tight">{example.title}</h3>
 					{#if example.description}
 						<p class="text-sm text-muted-foreground">{example.description}</p>
